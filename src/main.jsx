@@ -11,6 +11,7 @@ import Home from './Home';
 import Owner from './Owner';
 import User from './User';
 import "./App.css";
+import { mockEmployees } from './Home';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
     element: <>
       <Navbar />
       <Home />
-      <User />
+      <User mockEmployees = {mockEmployees}/>
     </>
   },
   {
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
     element: <>
       <Navbar />
       <Home />
-      <Admin />
+      <Admin mockEmployees = {mockEmployees}/>
     </>
   },
   {

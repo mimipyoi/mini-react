@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { mockEmployees } from './Home';
+import { useEffect, useState } from 'react';
+import { mockEmployees , addEmployees , deleteEmployee } from './Home';
 
 const shoutTest = () => {
     console.log({mockEmployees})
@@ -10,6 +10,26 @@ const admin = () => {
     const [firstname, setFirstname] = useState();
     const [lastname, setLastname] = useState();
     const [position, setPosition] = useState();
+
+    const [arrayEmployees, setArratEmployees] = useState(mockEmployees);
+
+    useEffect(() => {},[mockEmployees])
+
+    const submitHandler = (firstname,lastname,position) => {
+        const addNew = {
+            id: mockEmployees.length,
+            name: firstname,
+            lastname: lastname,
+            position: position,
+        }
+        console.log(addNew)
+        addEmployees(addNew);
+        console.log(mockEmployees)
+
+        setFirstname('');
+        setLastname('');
+        setPosition('');
+    }
 
     return (
         <div>
@@ -46,10 +66,17 @@ const admin = () => {
                             (setPosition(e.target.value)
                         )}
                     />
-                    <button type='button' id='buttonSave'>Save</button>
-                    <button type='button' onClick={
+                    <button 
+                        type='button' 
+                        id='buttonSave'
+                        onClick = {
+                        () => submitHandler(firstname,lastname,position)
+                        }>Save</button>
+                    <button 
+                        type='button' 
+                        onClick={
                         () => shoutTest()
-                    }>Test</button>
+                        }>Test</button>
                 </form>
             </div>
             <table>
@@ -63,11 +90,15 @@ const admin = () => {
                 </thead>
                 <tbody>
                     {mockEmployees.map((item) => (
-                    <tr>
+                    <tr key={item.id}>
                         <td>{item.name}</td>
                         <td>{item.lastname}</td>
                         <td>{item.position}</td>
-                        <td>Delete</td>
+                        <td id='deleteButton'>
+                            <span 
+                            onClick={() =>
+                            deleteEmployee(item.id)
+                        }>Delete</span></td>
                     </tr>
                     ))}
                 </tbody>

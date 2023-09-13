@@ -19,6 +19,18 @@ export const mockEmployees = [
   },
 ]
 
+export const addEmployees  = (newEmployee) => {
+  mockEmployees.push(newEmployee);
+};
+
+export const deleteEmployee = (id) => {
+  const newArray = mockEmployees.filter(item => item.id !== id)
+  console.log({newArray})
+  mockEmployees.length = 0;
+  Array.prototype.push.apply(mockEmployees,newArray)
+  console.log({mockEmployees})
+}
+
 const Home = () => {
 
   return (

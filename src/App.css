@@ -1,6 +1,19 @@
 ul {
-    list-style: none;
-    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+li {
+    float: left;
+}
+  
+li a {
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    color: black;
 }
 
 div {
@@ -34,4 +47,9 @@ button {
     background-color: mediumslateblue;
     color: white;
     box-shadow: none;
+}
+
+#deleteButton {
+    color:red;
+    font-weight: bolder;
 }
